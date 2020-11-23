@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import static DAO.ContaClienteDAO.ListaContaCliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,16 +14,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.ContaCliente;
+import model.ContaOrganizador;
 
 /**
  *
  * @author Nicolas
  */
-public class ContaClienteDAO {
-    public static ArrayList<ContaCliente> ListaContaCliente = new ArrayList<ContaCliente>();
-    
-    public ContaClienteDAO(){
-        
+public class ContaOrganizadorDAO {
+    public static ArrayList<ContaOrganizador> ListaContaOrganizador = new ArrayList<ContaOrganizador>();
+
+    public ContaOrganizadorDAO() {
     }
     
     public int maiorID() throws SQLException {
@@ -30,7 +31,7 @@ public class ContaClienteDAO {
         int maiorID = 0;
         try {
             Statement stmt = ConexaoDB.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_conta_cliente");
+            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_conta_organizador");
             res.next();
             maiorID = res.getInt("id");
 
@@ -41,15 +42,15 @@ public class ContaClienteDAO {
 
         return maiorID;
     }
-
+    
     // Busca as contas
-    public ArrayList getListaContaCliente() {
+    public ArrayList getListaContaOrganizador() {
         
-        ListaContaCliente.clear(); // Limpa o Array
+        ListaContaOrganizador.clear(); // Limpa o Array
 
         try {
             Statement stmt = ConexaoDB.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_conta_cliente");
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_conta_organizador");
             while (res.next()) {
 
                 String nome = res.getString("nome");
@@ -58,10 +59,11 @@ public class ContaClienteDAO {
                 String email = res.getString("email");
                 String telefone = res.getString("telefone");
                 String cpf = res.getString("cpf");
+                String cnpj = res.getString("cnpj");
 
-                ContaCliente objeto = new ContaCliente(id, nome, cpf, email, cpf, telefone);
+                ContaOrganizador objeto = new ContaOrganizador(id, nome, cnpj, email, cpf, telefone, cnpj);
 
-                ListaContaCliente.add(objeto);
+                ListaContaOrganizador.add(objeto);
             }
 
             stmt.close();
@@ -69,12 +71,12 @@ public class ContaClienteDAO {
         } catch (SQLException ex) {
         }
 
-        return ListaContaCliente;
+        return ListaContaOrganizador;
     }
-
+    
     // Cadastra nova conta
-    public boolean InsertContaClienteBD(ContaCliente objeto) {
-        String sql = "INSERT INTO tb_conta_cliente(id,nomeUsuario,senha,cpf,telefone,email) VALUES(?,?,?,?,?,?)";
+    public boolean InsertContaClienteBD(ContaOrganizador objeto) {
+        String sql = "INSERT INTO tb_conta_cliente(id,nomeUsuario,senha,cpf,cnpj,telefone,email) VALUES(?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql);
@@ -83,8 +85,9 @@ public class ContaClienteDAO {
             stmt.setString(2, objeto.getNomeUsuario());
             stmt.setString(3, objeto.getSenha());
             stmt.setString(4, objeto.getCpf());
-            stmt.setString(5, objeto.getTelefone());
-            stmt.setString(6, objeto.getEmail());
+            stmt.setString(5, objeto.getCnpj());
+            stmt.setString(6, objeto.getTelefone());
+            stmt.setString(7, objeto.getEmail());
 
             stmt.execute();
             stmt.close();
@@ -96,11 +99,11 @@ public class ContaClienteDAO {
         }
 
     }
-
+    
     // Edita uma conta pelo seu campo ID
-    public boolean UpdateContaClienteBD(ContaCliente objeto) {
+    public boolean UpdateContaOrganizadorBD(ContaOrganizador objeto) {
 
-        String sql = "UPDATE tb_conta_cliente set nomeUsuario = ? ,senha = ? ,cpf = ? ,telefone = ?, email = ? WHERE id = ?";
+        String sql = "UPDATE tb_conta_organizador set nomeUsuario = ? ,senha = ? ,cpf = ?,cnpj = ? ,telefone = ?,email = ? WHERE id = ?";
 
         try {
             PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql);
@@ -108,9 +111,10 @@ public class ContaClienteDAO {
             stmt.setString(1, objeto.getNomeUsuario());
             stmt.setString(2, objeto.getSenha());
             stmt.setString(3, objeto.getCpf());
-            stmt.setString(4, objeto.getTelefone());
-            stmt.setString(5, objeto.getEmail());
-            stmt.setInt(5, objeto.getId());
+            stmt.setString(4, objeto.getCpf());
+            stmt.setString(5, objeto.getTelefone());
+            stmt.setString(6, objeto.getEmail());
+            stmt.setInt(7, objeto.getId());
 
             stmt.execute();
             stmt.close();
@@ -122,4 +126,6 @@ public class ContaClienteDAO {
         }
 
     }
+    
+    
 }
