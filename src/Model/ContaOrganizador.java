@@ -20,7 +20,8 @@ public class ContaOrganizador extends Conta {
 	}
 	
 	public Evento criaEvento(int id, String nome, String local, String atracao, int lotacao, Date data) {
-		Evento evento = new Evento(id, nome, local, atracao, lotacao, data);
+                int ingressosDisponiveis = lotacao;
+		Evento evento = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis);
 		return evento;
 	}
 

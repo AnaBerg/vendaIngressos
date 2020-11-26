@@ -53,7 +53,7 @@ public class ContaClienteDAO {
             while (res.next()) {
 
                 String nome = res.getString("nome");
-                int senha = res.getInt("senha");
+                String senha = res.getString("senha");
                 int id = res.getInt("id");
                 String email = res.getString("email");
                 String telefone = res.getString("telefone");
@@ -121,5 +121,18 @@ public class ContaClienteDAO {
             throw new RuntimeException(erro);
         }
 
+    }
+    
+    // Deleta um Conta Cliente pelo seu campo ID
+    public boolean DeleteContaClienteBD(int id) {
+        try {
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM tb_conta_cliente WHERE id = " + id);
+            stmt.close();            
+            
+        } catch (SQLException erro) {
+        }
+        
+        return true;
     }
 }

@@ -12,13 +12,14 @@ public class Evento {
     private Date data;
     public int ingressosDisponiveis;
 
-    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data) {
+    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int ingressosDisponiveis) {
         this.id = id;
         this.nome = nome;
         this.local = local;
         this.atracao = atracao;
         this.lotacao = lotacao;
         this.data = data;
+        this.ingressosDisponiveis = ingressosDisponiveis;
     }
 
     public String getNome() {

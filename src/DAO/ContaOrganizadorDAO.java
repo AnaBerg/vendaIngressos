@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.ContaCliente;
 import model.ContaOrganizador;
 
 /**
@@ -54,7 +53,7 @@ public class ContaOrganizadorDAO {
             while (res.next()) {
 
                 String nome = res.getString("nome");
-                int senha = res.getInt("senha");
+                String senha = res.getString("senha");
                 int id = res.getInt("id");
                 String email = res.getString("email");
                 String telefone = res.getString("telefone");
@@ -125,6 +124,19 @@ public class ContaOrganizadorDAO {
             throw new RuntimeException(erro);
         }
 
+    }
+    
+    // Deleta um Conta Cliente pelo seu campo ID
+    public boolean DeleteContaOrganizadorBD(int id) {
+        try {
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM tb_conta_organizador WHERE id = " + id);
+            stmt.close();            
+            
+        } catch (SQLException erro) {
+        }
+        
+        return true;
     }
     
     
