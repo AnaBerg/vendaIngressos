@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeans%20Projetos/VendaDeIngressos/src/Model/Conta.java</file>
-            <file>file:/D:/NetBeans%20Projetos/VendaDeIngressos/src/Model/ContaCliente.java</file>
-            <file>file:/D:/NetBeans%20Projetos/VendaDeIngressos/src/Model/Evento.java</file>
-            <file>file:/D:/NetBeans%20Projetos/VendaDeIngressos/src/Model/Compra.java</file>
+            <file>file:/D:/NetBeansProjetos/VendaDeIngressos/src/Model/Evento.java</file>
+            <file>file:/D:/NetBeansProjetos/VendaDeIngressos/src/DAO/EventoDAO.java</file>
+            <file>file:/D:/NetBeansProjetos/VendaDeIngressos/src/Model/ContaOrganizador.java</file>
         </group>
     </open-files>
 </project-private>
