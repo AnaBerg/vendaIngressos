@@ -12,6 +12,9 @@ public class Evento {
     private Date data;
     public int ingressosDisponiveis;
 
+    public Evento(){
+    }
+    
     public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int ingressosDisponiveis) {
         this.id = id;
         this.nome = nome;

@@ -18,12 +18,12 @@ import model.Evento;
  * @author Nicolas
  */
 public class EventoDAO {
-    
+
     public static ArrayList<Evento> ListaEvento = new ArrayList<Evento>();
 
     public EventoDAO() {
     }
-    
+
     public int maiorID() throws SQLException {
 
         int maiorID = 0;
@@ -40,10 +40,10 @@ public class EventoDAO {
 
         return maiorID;
     }
-    
+
     // Busca as contas
     public ArrayList getListaEvento() {
-        
+
         ListaEvento.clear(); // Limpa o Array
 
         try {
@@ -71,7 +71,34 @@ public class EventoDAO {
 
         return ListaEvento;
     }
-    
+
+    // Busca um Evento pelo ID
+    public Evento buscarEvento(int id) {
+
+        Evento evento = new Evento();
+        
+        try {
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_evento WHERE id = " + id);
+
+            id = res.getInt("id");
+            String nome = res.getString("nome");
+            String local = res.getString("local");
+            String atracao = res.getString("atracao");
+            int lotacao = res.getInt("lotacao");
+            Date data = res.getDate("data");
+            int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
+
+            evento = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis);
+
+            res.close();
+
+        } catch (SQLException ex) {
+        }
+        
+        return evento;
+    }
+
     // Cadastra novo Evento
     public boolean InsertEventoBD(Evento objeto) {
         String sql = "INSERT INTO tb_evento(id,nome,local,atracao,lotacao,data,ingressosDisponiveis) VALUES(?,?,?,?,?,?,?)";
@@ -97,7 +124,7 @@ public class EventoDAO {
         }
 
     }
-    
+
     // Edita um Evento pelo seu campo ID
     public boolean UpdateEventoBD(Evento objeto) {
 
@@ -124,17 +151,17 @@ public class EventoDAO {
         }
 
     }
-    
+
     // Deleta um Evento pelo seu campo ID
     public boolean DeleteEventoBD(int id) {
         try {
             Statement stmt = ConexaoDB.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_evento WHERE id = " + id);
-            stmt.close();            
-            
+            stmt.close();
+
         } catch (SQLException erro) {
         }
-        
+
         return true;
     }
 }
