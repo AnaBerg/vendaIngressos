@@ -15,13 +15,14 @@ public class Evento {
     private int lotacao;
     private Date data;
     private int ingressosDisponiveis;
+    private int conta_organizador_id;
     private final EventoDAO dao;
 
     public Evento(){
     	this.dao = new EventoDAO();
     }
     
-    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data) {
+    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int conta_organizador_id) {
         this.id = id;
         this.nome = nome;
         this.local = local;
@@ -29,6 +30,7 @@ public class Evento {
         this.lotacao = lotacao;
         this.data = data;
         this.ingressosDisponiveis = lotacao;
+        this.conta_organizador_id = conta_organizador_id;
         this.dao = new EventoDAO();
     }
     
@@ -63,6 +65,16 @@ public class Evento {
     public int getLotacao() {
         return lotacao;
     }
+
+    public int getConta_organizador_id() {
+        return conta_organizador_id;
+    }
+
+    public void setConta_organizador_id(int conta_organizador_id) {
+        this.conta_organizador_id = conta_organizador_id;
+    }
+    
+    
 
     public void setLotacao(int lotacao) {
         this.lotacao = lotacao;

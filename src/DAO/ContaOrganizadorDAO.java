@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Model.ContaOrganizador;
+import Model.Evento;
+import java.util.Date;
 
 /**
  *
@@ -94,6 +96,31 @@ public class ContaOrganizadorDAO {
             throw new RuntimeException(erro);
         }
 
+    }
+    
+    public ContaOrganizador buscarOrganizador(int id){
+        ContaOrganizador contaOrganizador = new ContaOrganizador();
+        
+        try {
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_conta_organizador WHERE id = " + id);
+
+            id = res.getInt("id");
+            String nome = res.getString("nome");
+            String senha = res.getString("senha");
+            String email = res.getString("email");
+            String cpf = res.getString("cpf");
+            String telefone = res.getString("telefone");
+            String cnpj = res.getString("cnpj");
+
+            contaOrganizador = new ContaOrganizador(id, nome, senha, email, cpf, telefone, cnpj);
+
+            res.close();
+
+        } catch (SQLException ex) {
+        }
+        
+        return contaOrganizador;
     }
     
     // Edita uma conta pelo seu campo ID

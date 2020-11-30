@@ -6,8 +6,8 @@ public class Compra {
 	
 	private int id;
 	private int quantidadeIngressos;
-	private int contaClienteId;
-	private int eventoId;
+	private int conta_cliente_id;
+	private int evento_id;
 	private final EventoDAO dao;
 	
 	public Compra() {
@@ -17,8 +17,8 @@ public class Compra {
 	public Compra(int id, int quantidadeIngressos, int contaClienteId, int eventoId) {
 		this.id = id;
 		this.quantidadeIngressos = quantidadeIngressos;
-		this.contaClienteId = contaClienteId;
-		this.eventoId = eventoId;
+		this.conta_cliente_id = contaClienteId;
+		this.evento_id = eventoId;
 		this.dao = new EventoDAO();
 	}
 
@@ -31,19 +31,19 @@ public class Compra {
 	}
 
 	public int getContaClienteId() {
-		return contaClienteId;
+		return conta_cliente_id;
 	}
 
 	public void setContaClienteId(int contaClienteId) {
-		this.contaClienteId = contaClienteId;
+		this.conta_cliente_id = contaClienteId;
 	}
 
 	public int getEventoId() {
-		return eventoId;
+		return evento_id;
 	}
 
 	public void setEventoId(int eventoId) {
-		this.eventoId = eventoId;
+		this.evento_id = eventoId;
 	}
 
 	public int getId() {
@@ -51,7 +51,7 @@ public class Compra {
 	}
 	
 	public boolean realizarCompra(){
-		Evento evento = dao.buscarEvento(this.eventoId);
+		Evento evento = dao.buscarEvento(this.evento_id);
 		int ingressosDisponiveis = evento.getIngressosDisponiveis() - this.quantidadeIngressos;
 		evento.setIngressosDisponiveis(ingressosDisponiveis);
 		dao.UpdateEventoBD(evento);
