@@ -158,8 +158,7 @@ public class ContaOrganizadorDAO {
             stmt.close();            
             
         } catch (SQLException erro) {
-        }
-        
+        }     
         return true;
     }
     
