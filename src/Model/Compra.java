@@ -1,4 +1,6 @@
-package model;
+package Model;
+
+import DAO.EventoDAO;
 
 public class Compra {
 	
@@ -6,12 +8,18 @@ public class Compra {
 	private int quantidadeIngressos;
 	private int contaClienteId;
 	private int eventoId;
+	private final EventoDAO dao;
+	
+	public Compra() {
+		this.dao = new EventoDAO();
+	}
 	
 	public Compra(int id, int quantidadeIngressos, int contaClienteId, int eventoId) {
 		this.id = id;
 		this.quantidadeIngressos = quantidadeIngressos;
 		this.contaClienteId = contaClienteId;
 		this.eventoId = eventoId;
+		this.dao = new EventoDAO();
 	}
 
 	public int getQuantidadeIngressos() {
@@ -41,4 +49,12 @@ public class Compra {
 	public int getId() {
 		return id;
 	}
+	
+	public boolean realizarCompra(){
+		Evento evento = dao.buscarEvento(this.eventoId);
+		int ingressosDisponiveis = evento.getIngressosDisponiveis() - this.quantidadeIngressos;
+		evento.setIngressosDisponiveis(ingressosDisponiveis);
+		dao.UpdateEventoBD(evento);
+		return true;
+    }
 }

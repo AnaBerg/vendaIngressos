@@ -1,6 +1,10 @@
-package model;
+package Model;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+
+import DAO.EventoDAO;
 
 public class Evento {
 
@@ -10,19 +14,26 @@ public class Evento {
     private String atracao;
     private int lotacao;
     private Date data;
-    public int ingressosDisponiveis;
+    private int ingressosDisponiveis;
+    private final EventoDAO dao;
 
     public Evento(){
+    	this.dao = new EventoDAO();
     }
     
-    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int ingressosDisponiveis) {
+    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data) {
         this.id = id;
         this.nome = nome;
         this.local = local;
         this.atracao = atracao;
         this.lotacao = lotacao;
         this.data = data;
-        this.ingressosDisponiveis = ingressosDisponiveis;
+        this.ingressosDisponiveis = lotacao;
+        this.dao = new EventoDAO();
+    }
+    
+    public int getId() {
+        return id;
     }
 
     public String getNome() {
@@ -31,10 +42,6 @@ public class Evento {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getIngressosDisponiveis() {
-        return ingressosDisponiveis;
     }
 
     public String getLocal() {
@@ -68,8 +75,35 @@ public class Evento {
     public void setData(Date data) {
         this.data = data;
     }
-
-    public int getId() {
-        return id;
+    
+    public int getIngressosDisponiveis() {
+        return ingressosDisponiveis;
     }
+
+	public void setIngressosDisponiveis(int ingressosDisponiveis) {
+		this.ingressosDisponiveis = ingressosDisponiveis;
+	}
+	
+	public boolean criaEvento(Evento evento) {
+		dao.InsertEventoBD(evento);
+		return true;
+	}
+	
+	public boolean editaEvento(Evento evento) {
+		dao.UpdateEventoBD(evento);
+		return true;
+	}
+	
+	public boolean deletaEvento(int id) {
+		dao.DeleteEventoBD(id);
+		return true;
+	}
+	
+	public ArrayList<Evento> ListaEventos() {
+		return dao.getListaEvento();
+	}
+	
+	public int maiorId() throws SQLException {
+		return dao.maiorID();
+	}
 }

@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 public abstract class Conta {
 	
@@ -8,6 +8,9 @@ public abstract class Conta {
 	private String email;
 	private String cpf;
 	private String telefone;
+	
+	public Conta() {		
+	}
 	
 	public Conta(int id, String nomeUsuario, String senha, String email, String cpf, String telefone) {
 		this.id = id;
@@ -61,9 +64,4 @@ public abstract class Conta {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	
-	
-	
-	
 }

@@ -5,14 +5,12 @@
  */
 package DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.ContaCliente;
+import Model.ContaCliente;
 
 /**
  *
@@ -43,7 +41,7 @@ public class ContaClienteDAO {
     }
 
     // Busca as contas
-    public ArrayList getListaContaCliente() {
+    public ArrayList<ContaCliente> getListaContaCliente() {
         
         ListaContaCliente.clear(); // Limpa o Array
 
@@ -59,7 +57,7 @@ public class ContaClienteDAO {
                 String telefone = res.getString("telefone");
                 String cpf = res.getString("cpf");
 
-                ContaCliente objeto = new ContaCliente(id, nome, cpf, email, cpf, telefone);
+                ContaCliente objeto = new ContaCliente(id, nome, senha, email, cpf, telefone);
 
                 ListaContaCliente.add(objeto);
             }
@@ -110,7 +108,7 @@ public class ContaClienteDAO {
             stmt.setString(3, objeto.getCpf());
             stmt.setString(4, objeto.getTelefone());
             stmt.setString(5, objeto.getEmail());
-            stmt.setInt(5, objeto.getId());
+            stmt.setInt(6, objeto.getId());
 
             stmt.execute();
             stmt.close();

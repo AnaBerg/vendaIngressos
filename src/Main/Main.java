@@ -1,11 +1,12 @@
-
 package Main;
 
-import view.TelaInicial;
+import DAO.ContaClienteDAO;
+import Model.ContaCliente;
 
 public class Main {
     public static void main(String[] args) {
-        TelaInicial objeto = new TelaInicial();
-        objeto.setVisible(true);
+        ContaClienteDAO dao = new ContaClienteDAO();
+        ContaCliente conta = new ContaCliente(1, "Damiani", "123", "eu", "sks", "111");
+        dao.InsertContaClienteBD(conta);
     }
 }

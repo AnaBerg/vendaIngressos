@@ -5,15 +5,12 @@
  */
 package DAO;
 
-import static DAO.ContaClienteDAO.ListaContaCliente;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.ContaOrganizador;
+import Model.ContaOrganizador;
 
 /**
  *
@@ -43,7 +40,7 @@ public class ContaOrganizadorDAO {
     }
     
     // Busca as contas
-    public ArrayList getListaContaOrganizador() {
+    public ArrayList<ContaOrganizador> getListaContaOrganizador() {
         
         ListaContaOrganizador.clear(); // Limpa o Array
 
@@ -60,7 +57,7 @@ public class ContaOrganizadorDAO {
                 String cpf = res.getString("cpf");
                 String cnpj = res.getString("cnpj");
 
-                ContaOrganizador objeto = new ContaOrganizador(id, nome, cnpj, email, cpf, telefone, cnpj);
+                ContaOrganizador objeto = new ContaOrganizador(id, nome, senha, email, cpf, telefone, cnpj);
 
                 ListaContaOrganizador.add(objeto);
             }
@@ -74,7 +71,7 @@ public class ContaOrganizadorDAO {
     }
     
     // Cadastra nova conta
-    public boolean InsertContaClienteBD(ContaOrganizador objeto) {
+    public boolean InsertContaOrganizadorBD(ContaOrganizador objeto) {
         String sql = "INSERT INTO tb_conta_cliente(id,nomeUsuario,senha,cpf,cnpj,telefone,email) VALUES(?,?,?,?,?,?,?)";
 
         try {

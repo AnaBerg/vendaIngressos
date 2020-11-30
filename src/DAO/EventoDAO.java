@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-import model.Evento;
+import Model.Evento;
 
 /**
  *
@@ -42,7 +42,7 @@ public class EventoDAO {
     }
 
     // Busca as contas
-    public ArrayList getListaEvento() {
+    public ArrayList<Evento> getListaEvento() {
 
         ListaEvento.clear(); // Limpa o Array
 
