@@ -111,7 +111,13 @@ public class Evento {
 		return true;
 	}
 	
-	public ArrayList<Evento> ListaEventos() {
+        // Lista de Eventos do Organizador
+	public ArrayList<Evento> ListaEventosOrganizador() {
+		return dao.getListaEvento(this.conta_organizador_id);
+	}
+        
+        // Lista de Eventos para o Comprador
+        public ArrayList<Evento> ListaEventos() {
 		return dao.getListaEvento();
 	}
 	

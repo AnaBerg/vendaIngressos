@@ -42,6 +42,40 @@ public class EventoDAO {
     }
 
     // Busca as contas
+    public ArrayList<Evento> getListaEvento(int idOrganizador) {
+
+        ListaEvento.clear(); // Limpa o Array
+
+        try {
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_evento WHERE conta_organizador_id = " + idOrganizador);
+
+            if (res != null) {
+                while (res.next()) {
+
+                    String nome = res.getString("nome");
+                    String local = res.getString("local");
+                    int id = res.getInt("id");
+                    String atracao = res.getString("atracao");
+                    int lotacao = res.getInt("lotacao");
+                    Date data = res.getDate("data");
+                    int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
+
+                    Evento objeto = new Evento(id, nome, local, atracao, lotacao, data, idOrganizador);
+
+                    //int id, String nome, String local, String atracao, int lotacao, Date data, int conta_organizador_id
+                    ListaEvento.add(objeto);
+                }
+
+                stmt.close();
+            }
+
+        } catch (SQLException ex) {
+        }
+
+        return ListaEvento;
+    }
+    
     public ArrayList<Evento> getListaEvento() {
 
         ListaEvento.clear(); // Limpa o Array
@@ -49,22 +83,27 @@ public class EventoDAO {
         try {
             Statement stmt = ConexaoDB.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_evento");
-            while (res.next()) {
 
-                String nome = res.getString("nome");
-                String local = res.getString("local");
-                int id = res.getInt("id");
-                String atracao = res.getString("atracao");
-                int lotacao = res.getInt("lotacao");
-                Date data = res.getDate("data");
-                int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
+            if (res != null) {
+                while (res.next()) {
 
-                Evento objeto = new Evento(id, nome, local, atracao, lotacao, data);
+                    String nome = res.getString("nome");
+                    String local = res.getString("local");
+                    int id = res.getInt("id");
+                    String atracao = res.getString("atracao");
+                    int lotacao = res.getInt("lotacao");
+                    Date data = res.getDate("data");
+                    int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
+                    int conta_organizador_id = res.getInt("conta_organizador_id");
 
-                ListaEvento.add(objeto);
+                    Evento objeto = new Evento(id, nome, local, atracao, lotacao, data, conta_organizador_id);
+
+                    //int id, String nome, String local, String atracao, int lotacao, Date data, int conta_organizador_id
+                    ListaEvento.add(objeto);
+                }
+
+                stmt.close();
             }
-
-            stmt.close();
 
         } catch (SQLException ex) {
         }
@@ -76,7 +115,7 @@ public class EventoDAO {
     public Evento buscarEvento(int id) {
 
         Evento evento = new Evento();
-        
+
         try {
             Statement stmt = ConexaoDB.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_evento WHERE id = " + id);
@@ -89,13 +128,13 @@ public class EventoDAO {
             Date data = res.getDate("data");
             int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
 
-            evento = new Evento(id, nome, local, atracao, lotacao, data);
+            evento = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis);
 
             res.close();
 
         } catch (SQLException ex) {
         }
-        
+
         return evento;
     }
 
