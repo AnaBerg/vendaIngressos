@@ -59,7 +59,7 @@ public class EventoDAO {
                 Date data = res.getDate("data");
                 int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
 
-                Evento objeto = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis);
+                Evento objeto = new Evento(id, nome, local, atracao, lotacao, data);
 
                 ListaEvento.add(objeto);
             }
@@ -89,7 +89,7 @@ public class EventoDAO {
             Date data = res.getDate("data");
             int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
 
-            evento = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis);
+            evento = new Evento(id, nome, local, atracao, lotacao, data);
 
             res.close();
 
