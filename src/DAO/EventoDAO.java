@@ -61,7 +61,7 @@ public class EventoDAO {
                     Date data = res.getDate("data");
                     int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
 
-                    Evento objeto = new Evento(id, nome, local, atracao, lotacao, data, idOrganizador);
+                    Evento objeto = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis, idOrganizador);
 
                     //int id, String nome, String local, String atracao, int lotacao, Date data, int conta_organizador_id
                     ListaEvento.add(objeto);
@@ -96,7 +96,7 @@ public class EventoDAO {
                     int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
                     int conta_organizador_id = res.getInt("conta_organizador_id");
 
-                    Evento objeto = new Evento(id, nome, local, atracao, lotacao, data, conta_organizador_id);
+                    Evento objeto = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis, conta_organizador_id);
 
                     //int id, String nome, String local, String atracao, int lotacao, Date data, int conta_organizador_id
                     ListaEvento.add(objeto);
@@ -127,8 +127,9 @@ public class EventoDAO {
             int lotacao = res.getInt("lotacao");
             Date data = res.getDate("data");
             int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
+            int conta_organizador_id = res.getInt("conta_organizador_id");
 
-            evento = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis);
+            evento = new Evento(id, nome, local, atracao, lotacao, data, ingressosDisponiveis, conta_organizador_id);
 
             res.close();
 
@@ -140,7 +141,7 @@ public class EventoDAO {
 
     // Cadastra novo Evento
     public boolean InsertEventoBD(Evento objeto) {
-        String sql = "INSERT INTO tb_evento(id,nome,local,atracao,lotacao,data,ingressosDisponiveis) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_evento(id,nome,local,atracao,lotacao,data,ingressosDisponiveis,conta_organizador_id) VALUES(?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql);
@@ -152,6 +153,7 @@ public class EventoDAO {
             stmt.setInt(5, objeto.getLotacao());
             stmt.setDate(6, (java.sql.Date) objeto.getData());
             stmt.setInt(7, objeto.getIngressosDisponiveis());
+            stmt.setInt(8, objeto.getConta_organizador_id());
 
             stmt.execute();
             stmt.close();
@@ -167,7 +169,7 @@ public class EventoDAO {
     // Edita um Evento pelo seu campo ID
     public boolean UpdateEventoBD(Evento objeto) {
 
-        String sql = "UPDATE tb_evento set nome = ? ,local = ? ,atracao = ?,lotacao = ? ,data = ?,ingressosDisponiveis = ? WHERE id = ?";
+        String sql = "UPDATE tb_evento set nome = ? ,local = ? ,atracao = ?,lotacao = ? ,data = ?,ingressosDisponiveis = ?, conta_organizador_id = ? WHERE id = ?";
 
         try {
             PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql);
@@ -178,7 +180,8 @@ public class EventoDAO {
             stmt.setInt(4, objeto.getLotacao());
             stmt.setDate(5, (java.sql.Date) objeto.getData());
             stmt.setInt(6, objeto.getIngressosDisponiveis());
-            stmt.setInt(7, objeto.getId());
+            stmt.setInt(7, objeto.getConta_organizador_id());
+            stmt.setInt(8, objeto.getId());
 
             stmt.execute();
             stmt.close();

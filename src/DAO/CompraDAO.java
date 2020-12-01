@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,8 +18,32 @@ import java.sql.Statement;
  */
 public class CompraDAO {
 
+    public static ArrayList<Compra> ListaCompra = new ArrayList<Compra>();
+
     public CompraDAO() {
 
+    }
+
+    public ArrayList<Compra> getComprasCliente(int idCliente) {
+        ListaCompra.clear();
+        try {
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_compra");
+            
+            while(res.next()){
+                int id = res.getInt("id");
+                int quantidadeIngressos = res.getInt("quantidadeIngressos");
+                int contaClienteId = res.getInt("conta_cliente_id");
+                int eventoId = res.getInt("evento_id");
+                
+                Compra compra = new Compra(id, quantidadeIngressos, contaClienteId, eventoId);
+                
+                ListaCompra.add(compra);
+            }
+        } catch (SQLException ex) {
+        }
+
+        return ListaCompra;
     }
 
     public int maiorID() throws SQLException {
@@ -54,7 +79,7 @@ public class CompraDAO {
             ResultSet res = stmtConta.executeQuery("SELECT * FROM tb_evento WHERE id = " + objeto.getEventoId());
 
             int ingressosDisponiveis = res.getInt("ingressosDisponiveis");
-            
+
             res.close();
 
             if (ingressosDisponiveis <= objeto.getQuantidadeIngressos()) {
@@ -73,7 +98,7 @@ public class CompraDAO {
         }
 
     }
-    
+
     // Deleta um Compra pelo seu campo ID
     public boolean DeleteCompraBD(int id) {
         try {
@@ -86,5 +111,4 @@ public class CompraDAO {
 
         return true;
     }
-
 }

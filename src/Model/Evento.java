@@ -22,14 +22,14 @@ public class Evento {
     	this.dao = new EventoDAO();
     }
     
-    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int conta_organizador_id) {
+    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int ingressosDisponiveis, int conta_organizador_id) {
         this.id = id;
         this.nome = nome;
         this.local = local;
         this.atracao = atracao;
         this.lotacao = lotacao;
         this.data = data;
-        this.ingressosDisponiveis = lotacao;
+        this.ingressosDisponiveis = ingressosDisponiveis;
         this.conta_organizador_id = conta_organizador_id;
         this.dao = new EventoDAO();
     }
