@@ -51,10 +51,14 @@ public class Compra {
 	}
 	
 	public boolean realizarCompra(){
-		Evento evento = dao.buscarEvento(this.evento_id);
-		int ingressosDisponiveis = evento.getIngressosDisponiveis() - this.quantidadeIngressos;
-		evento.setIngressosDisponiveis(ingressosDisponiveis);
-		dao.UpdateEventoBD(evento);
-		return true;
+		if(this.quantidadeIngressos <= evento.getIngressosDisponiveis()) {
+			Evento evento = dao.buscarEvento(this.evento_id);
+			int ingressosDisponiveis = evento.getIngressosDisponiveis() - this.quantidadeIngressos;
+			evento.setIngressosDisponiveis(ingressosDisponiveis);
+			dao.UpdateEventoBD(evento);
+			return true;
+		} else {
+			return false;
+		}
     }
 }
