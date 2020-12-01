@@ -6,7 +6,7 @@ public class Compra {
 	
 	private int id;
 	private int quantidadeIngressos;
-	private int conta_cliente_id;
+	private int contaClienteId;
 	private int evento_id;
 	private final EventoDAO dao;
 	
@@ -17,7 +17,7 @@ public class Compra {
 	public Compra(int id, int quantidadeIngressos, int contaClienteId, int eventoId) {
 		this.id = id;
 		this.quantidadeIngressos = quantidadeIngressos;
-		this.conta_cliente_id = contaClienteId;
+		this.contaClienteId = contaClienteId;
 		this.evento_id = eventoId;
 		this.dao = new EventoDAO();
 	}
