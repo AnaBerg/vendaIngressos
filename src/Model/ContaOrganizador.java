@@ -50,4 +50,9 @@ public class ContaOrganizador extends Conta {
 	public int maiorId() throws SQLException {
 		return dao.maiorID();
 	}
+	
+	public boolean buscaOrganizador() {
+		dao.buscarOrganizador(id);
+		return true;
+	}
 }

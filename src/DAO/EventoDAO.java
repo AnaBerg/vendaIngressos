@@ -42,7 +42,7 @@ public class EventoDAO {
     }
 
     // Busca as contas
-    public ArrayList<Evento> getListaEvento(int idOrganizador) {
+    public ArrayList<Evento> getListaEventoColaborador(int idOrganizador) {
 
         ListaEvento.clear(); // Limpa o Array
 
