@@ -42,7 +42,7 @@ public class EventoDAO {
     }
 
     // Busca as contas
-    public ArrayList<Evento> getListaEvento(int idOrganizador) {
+    public ArrayList<Evento> getListaEventoColaborador(int idOrganizador) {
 
         ListaEvento.clear(); // Limpa o Array
 
@@ -153,7 +153,7 @@ public class EventoDAO {
             stmt.setInt(5, objeto.getLotacao());
             stmt.setDate(6, (java.sql.Date) objeto.getData());
             stmt.setInt(7, objeto.getIngressosDisponiveis());
-            stmt.setInt(8, objeto.getConta_organizador_id());
+            stmt.setInt(8, objeto.getContaOrganizadorId());
 
             stmt.execute();
             stmt.close();
@@ -180,7 +180,7 @@ public class EventoDAO {
             stmt.setInt(4, objeto.getLotacao());
             stmt.setDate(5, (java.sql.Date) objeto.getData());
             stmt.setInt(6, objeto.getIngressosDisponiveis());
-            stmt.setInt(7, objeto.getConta_organizador_id());
+            stmt.setInt(7, objeto.getContaOrganizadorId());
             stmt.setInt(8, objeto.getId());
 
             stmt.execute();

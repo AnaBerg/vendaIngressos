@@ -15,7 +15,7 @@ public class Evento {
     private int lotacao;
     private Date data;
     private int ingressosDisponiveis;
-    private int conta_organizador_id;
+    private int contaOrganizadorId;
     private final EventoDAO dao;
 
     public Evento(){
@@ -30,7 +30,8 @@ public class Evento {
         this.lotacao = lotacao;
         this.data = data;
         this.ingressosDisponiveis = ingressosDisponiveis;
-        this.conta_organizador_id = conta_organizador_id;
+        this.ingressosDisponiveis = lotacao;
+        this.contaOrganizadorId = conta_organizador_id;
         this.dao = new EventoDAO();
     }
     
@@ -66,12 +67,12 @@ public class Evento {
         return lotacao;
     }
 
-    public int getConta_organizador_id() {
-        return conta_organizador_id;
+    public int getContaOrganizadorId() {
+        return contaOrganizadorId;
     }
 
-    public void setConta_organizador_id(int conta_organizador_id) {
-        this.conta_organizador_id = conta_organizador_id;
+    public void setContaOrganizadorId(int conta_organizador_id) {
+        this.contaOrganizadorId = conta_organizador_id;
     }
     
     
@@ -97,13 +98,19 @@ public class Evento {
 	}
 	
 	public boolean criaEvento(Evento evento) {
-		dao.InsertEventoBD(evento);
-		return true;
+		if(validaOrganizador(evento.contaOrganizadorId)) {
+			dao.InsertEventoBD(evento);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean editaEvento(Evento evento) {
-		dao.UpdateEventoBD(evento);
-		return true;
+		if(validaOrganizador(evento.contaOrganizadorId)) {
+			dao.UpdateEventoBD(evento);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean deletaEvento(int id) {
@@ -112,16 +119,24 @@ public class Evento {
 	}
 	
         // Lista de Eventos do Organizador
-	public ArrayList<Evento> ListaEventosOrganizador() {
-		return dao.getListaEvento(this.conta_organizador_id);
+	public ArrayList<Evento> ListaEventosOrganizador(int id) {
+		return dao.getListaEventoColaborador(id);
 	}
         
         // Lista de Eventos para o Comprador
-        public ArrayList<Evento> ListaEventos() {
+    public ArrayList<Evento> ListaEventos() {
 		return dao.getListaEvento();
 	}
 	
 	public int maiorId() throws SQLException {
 		return dao.maiorID();
+	}
+	
+	private boolean validaOrganizador(int id) {
+		ContaOrganizador obj = new ContaOrganizador();
+		if(obj.buscaOrganizador()) {
+			return true;
+		}
+		return false;
 	}
 }
