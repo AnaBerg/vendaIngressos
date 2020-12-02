@@ -8,10 +8,10 @@ public class Compra {
 	private int quantidadeIngressos;
 	private int contaClienteId;
 	private int eventoId;
-	private final EventoDAO dao;
+	private CompraDAO dao;
 	
 	public Compra() {
-		this.dao = new EventoDAO();
+		this.dao = new CompraDAO();
 	}
 	
 	public Compra(int id, int quantidadeIngressos, int contaClienteId, int eventoId) {
@@ -19,7 +19,7 @@ public class Compra {
 		this.quantidadeIngressos = quantidadeIngressos;
 		this.contaClienteId = contaClienteId;
 		this.eventoId = eventoId;
-		this.dao = new EventoDAO();
+		this.dao = new CompraDAO();
 	}
 
 	public int getQuantidadeIngressos() {

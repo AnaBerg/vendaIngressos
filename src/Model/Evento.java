@@ -139,4 +139,8 @@ public class Evento {
 		}
 		return false;
 	}
+
+    public Evento getEventoById(int id) {
+        return dao.buscarEvento(id);
+    }
 }
