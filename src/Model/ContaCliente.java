@@ -40,4 +40,9 @@ public class ContaCliente extends Conta {
 	public int maiorId() throws SQLException {
 		return dao.maiorID();
 	}
+	
+	public ArrayList<Compra> historicoCompras(int id) {
+		Compra compra = new Compra();
+		return compra.getComprasCliente(id);
+	}
 }

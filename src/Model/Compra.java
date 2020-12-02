@@ -1,6 +1,9 @@
 package Model;
 
-import DAO.EventoDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import DAO.CompraDAO;
 
 public class Compra {
 	
@@ -9,9 +12,11 @@ public class Compra {
 	private int contaClienteId;
 	private int eventoId;
 	private CompraDAO dao;
+	private Evento objEvento;
 	
 	public Compra() {
 		this.dao = new CompraDAO();
+		this.objEvento = new Evento();
 	}
 	
 	public Compra(int id, int quantidadeIngressos, int contaClienteId, int eventoId) {
@@ -20,6 +25,7 @@ public class Compra {
 		this.contaClienteId = contaClienteId;
 		this.eventoId = eventoId;
 		this.dao = new CompraDAO();
+		this.objEvento = new Evento();
 	}
 
 	public int getQuantidadeIngressos() {
@@ -50,15 +56,36 @@ public class Compra {
 		return id;
 	}
 	
-	public boolean realizarCompra(){
-		if(this.quantidadeIngressos <= evento.getIngressosDisponiveis()) {
-			Evento evento = dao.buscarEvento(this.eventoId);
-			int ingressosDisponiveis = evento.getIngressosDisponiveis() - this.quantidadeIngressos;
+	public boolean realizarCompra(Compra compra){
+		Evento evento = objEvento.getEventoById(compra.getEventoId());
+		int ingressosComprados = compra.getQuantidadeIngressos();
+		if(ingressosComprados <= evento.getIngressosDisponiveis()) {
+			int ingressosDisponiveis = evento.getIngressosDisponiveis() - ingressosComprados;
 			evento.setIngressosDisponiveis(ingressosDisponiveis);
-			dao.UpdateEventoBD(evento);
+			evento.editaEvento(evento);
+			dao.InsertCompraBD(compra);
 			return true;
 		} else {
 			return false;
 		}
     }
+	
+	public boolean deleteCompra(int id) {
+		dao.DeleteCompraBD(id);
+		return true;
+	}
+	
+	public ArrayList<Compra> getComprasCliente(int id) {
+		return dao.getComprasCliente(id);
+	}
+	
+	public int maiorId() throws SQLException {
+		return dao.maiorID();
+	}
+	
+	@Override
+	public String toString() {
+		String nomeEvetoString = objEvento.getNome();
+		return "Evento: " + nomeEvetoString + "\nQuantidade Ingressos: " + this.quantidadeIngressos;
+	}
 }

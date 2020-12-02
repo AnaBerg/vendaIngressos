@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,14 +23,14 @@ public class Evento {
     	this.dao = new EventoDAO();
     }
     
-    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int ingressosDisponiveis, int conta_organizador_id) {
+    public Evento(int id, String nome, String local, String atracao, int lotacao, Date data, int conta_organizador_id) {
         this.id = id;
         this.nome = nome;
         this.local = local;
         this.atracao = atracao;
         this.lotacao = lotacao;
         this.data = data;
-        this.ingressosDisponiveis = ingressosDisponiveis;
+        this.ingressosDisponiveis = lotacao;
         this.ingressosDisponiveis = lotacao;
         this.contaOrganizadorId = conta_organizador_id;
         this.dao = new EventoDAO();
@@ -131,16 +132,27 @@ public class Evento {
 	public int maiorId() throws SQLException {
 		return dao.maiorID();
 	}
-	
-	private boolean validaOrganizador(int id) {
+
+    public Evento getEventoById(int id) {
+        return dao.buscarEvento(id);
+    }
+    
+    private boolean validaOrganizador(int id) {
 		ContaOrganizador obj = new ContaOrganizador();
 		if(obj.buscaOrganizador()) {
 			return true;
 		}
 		return false;
 	}
-
-    public Evento getEventoById(int id) {
-        return dao.buscarEvento(id);
+    
+    private String formataData() {
+    	SimpleDateFormat sdfDateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+    	String dataFormatada = sdfDateFormat.format(this.data);
+    	return dataFormatada;
+    }
+    
+    @Override
+    public String toString() {
+    	return "Nome: " + this.nome + "\nAtração: " + this.atracao + "\nData - Hora: " + formataData();
     }
 }

@@ -64,4 +64,9 @@ public abstract class Conta {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.id + "\nNome: " + this.nomeUsuario;
+	}
 }
