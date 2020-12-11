@@ -26,7 +26,7 @@ public class ContaClienteDAO {
     public int maiorID() throws SQLException {
 
         int maiorID = 0;
-        try {
+        
             Statement stmt = ConexaoDB.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_conta_cliente");
             res.next();
@@ -34,8 +34,7 @@ public class ContaClienteDAO {
 
             stmt.close();
 
-        } catch (SQLException ex) {
-        }
+        
 
         return maiorID;
     }

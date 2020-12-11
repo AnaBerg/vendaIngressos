@@ -1,4 +1,4 @@
-package view;
+package View;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,16 +31,14 @@ public class TelaInicial extends javax.swing.JFrame {
         subtitulo = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        tituloLoginForm = new javax.swing.JLabel();
-        inputUsuarioLogin = new javax.swing.JTextField();
-        etiquetaUsuarioLogin = new javax.swing.JLabel();
-        etiquetaSenhaLogin = new javax.swing.JLabel();
-        botaoEnviarFormLogin = new javax.swing.JButton();
-        inputSenhaLogin = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        botaoLoginOrganizador = new javax.swing.JButton();
+        botaoLoginComprador = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         texto1 = new javax.swing.JLabel();
         texto2 = new javax.swing.JLabel();
-        botaoCriarConta = new javax.swing.JButton();
+        butaoRegistroOrganizador = new javax.swing.JButton();
+        botaoRegistroComprador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INGRESSOS.JAVA");
@@ -51,24 +49,14 @@ public class TelaInicial extends javax.swing.JFrame {
         titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         titulo.setText("INGRESSOS.JAVA");
 
-        tituloLoginForm.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tituloLoginForm.setText("Faça seu login aqui!");
+        jLabel1.setText("Escolha o seu tipo de conta para fazer o login");
 
-        inputUsuarioLogin.addActionListener(new java.awt.event.ActionListener() {
+        botaoLoginOrganizador.setText("Organizador");
+
+        botaoLoginComprador.setText("Comprador");
+        botaoLoginComprador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputUsuarioLoginActionPerformed(evt);
-            }
-        });
-
-        etiquetaUsuarioLogin.setText("Usuário");
-
-        etiquetaSenhaLogin.setText("Senha");
-
-        botaoEnviarFormLogin.setText("Login");
-
-        inputSenhaLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputSenhaLoginActionPerformed(evt);
+                botaoLoginCompradorActionPerformed(evt);
             }
         });
 
@@ -76,49 +64,44 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(etiquetaSenhaLogin)
-                            .addComponent(etiquetaUsuarioLogin)
-                            .addComponent(inputUsuarioLogin)
-                            .addComponent(inputSenhaLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(botaoEnviarFormLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(tituloLoginForm)))
-                .addContainerGap(69, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(botaoLoginComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botaoLoginOrganizador, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                .addGap(51, 51, 51))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(tituloLoginForm)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(etiquetaUsuarioLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputUsuarioLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(etiquetaSenhaLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(botaoEnviarFormLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(71, 71, 71)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoLoginOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoLoginComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         texto1.setText("Caso não tenha uma conta ainda,");
 
         texto2.setText("clique no botão a baixo para criar uma");
 
-        botaoCriarConta.setText("Criar conta");
-        botaoCriarConta.addActionListener(new java.awt.event.ActionListener() {
+        butaoRegistroOrganizador.setText("Como Organizador");
+        butaoRegistroOrganizador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCriarContaActionPerformed(evt);
+                butaoRegistroOrganizadorActionPerformed(evt);
+            }
+        });
+
+        botaoRegistroComprador.setText("Como Comprador");
+        botaoRegistroComprador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRegistroCompradorActionPerformed(evt);
             }
         });
 
@@ -129,15 +112,20 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(botaoCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(texto2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(texto1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(texto2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(texto1)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoRegistroComprador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(butaoRegistroOrganizador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +134,11 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(texto1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(texto2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addGap(18, 18, 18)
+                .addComponent(butaoRegistroOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(botaoRegistroComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,19 +146,22 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(titulo)
-                        .addGap(165, 165, 165))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(subtitulo)
-                        .addGap(208, 208, 208))))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(titulo)
+                                .addGap(165, 165, 165))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(subtitulo)
+                                .addGap(208, 208, 208)))))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,20 +180,25 @@ public class TelaInicial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputUsuarioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputUsuarioLoginActionPerformed
-
-    private void botaoCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarContaActionPerformed
-        TelaRegistro objeto = new TelaRegistro();
+    private void botaoRegistroCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistroCompradorActionPerformed
+        TelaRegistroComprador objeto = new TelaRegistroComprador();
         objeto.setVisible(true);
         
         this.setVisible(false);
-    }//GEN-LAST:event_botaoCriarContaActionPerformed
+    }//GEN-LAST:event_botaoRegistroCompradorActionPerformed
 
-    private void inputSenhaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaLoginActionPerformed
+    private void botaoLoginCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginCompradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputSenhaLoginActionPerformed
+    }//GEN-LAST:event_botaoLoginCompradorActionPerformed
+    private void botaoLoginOrganizadorActionPerformed(java.awt.event.ActionEvent evt) {
+    
+    }
+    private void butaoRegistroOrganizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butaoRegistroOrganizadorActionPerformed
+        TelaRegistroOrganizador objeto = new TelaRegistroOrganizador();
+        objeto.setVisible(true);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_butaoRegistroOrganizadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,18 +236,16 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCriarConta;
-    private javax.swing.JButton botaoEnviarFormLogin;
-    private javax.swing.JLabel etiquetaSenhaLogin;
-    private javax.swing.JLabel etiquetaUsuarioLogin;
-    private javax.swing.JPasswordField inputSenhaLogin;
-    private javax.swing.JTextField inputUsuarioLogin;
+    private javax.swing.JButton botaoLoginComprador;
+    private javax.swing.JButton botaoLoginOrganizador;
+    private javax.swing.JButton botaoRegistroComprador;
+    private javax.swing.JButton butaoRegistroOrganizador;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel texto1;
     private javax.swing.JLabel texto2;
     private javax.swing.JLabel titulo;
-    private javax.swing.JLabel tituloLoginForm;
     // End of variables declaration//GEN-END:variables
 }

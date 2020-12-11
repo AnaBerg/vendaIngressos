@@ -3,17 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package View;
 
 import Control.ContaClienteControl;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
-public class TelaRegistro extends javax.swing.JFrame {
+public class TelaRegistroComprador extends javax.swing.JFrame {
 
     private ContaClienteControl controlador;
     
-    public TelaRegistro() {
+    public TelaRegistroComprador() {
         initComponents();
         this.controlador = new ContaClienteControl();
     }
@@ -26,19 +29,15 @@ public class TelaRegistro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         inputNome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        inputUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         inputEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         inputSenha = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        inputNumCartao = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        inputValCartao = new javax.swing.JTextField();
         botaoCriarConta = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        inputTelefone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,22 +46,24 @@ public class TelaRegistro extends javax.swing.JFrame {
 
         jLabel2.setText("Nome completo");
 
-        jLabel3.setText("Usuário");
-
         jLabel4.setText("E-mail");
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Senha");
 
         jLabel6.setText("CPF");
-
-        jLabel7.setText("Número do Cartão");
-
-        jLabel8.setText("Validade do Cartão");
 
         botaoCriarConta.setText("Criar conta");
         botaoCriarConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCriarContaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Telefone");
+
+        inputTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTelefoneActionPerformed(evt);
             }
         });
 
@@ -73,30 +74,22 @@ public class TelaRegistro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(botaoCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(220, 220, 220)
-                                .addComponent(jLabel8))
+                            .addComponent(jLabel3)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(inputNome)
-                            .addComponent(inputUsuario)
+                            .addComponent(inputNome, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                             .addComponent(inputEmail)
                             .addComponent(inputSenha)
                             .addComponent(inputCpf)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(inputNumCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(inputValCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(251, 251, 251)
-                        .addComponent(botaoCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(inputTelefone))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -108,47 +101,40 @@ public class TelaRegistro extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputNumCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputValCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(botaoCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarContaActionPerformed
-try{
+        try{
             String nome = "";
-            String usuario = "";
             String senha = "";
             String email = "";
-            int cpf = 0;
-            int numCartao = 0;
-            String valCartao = "";
+            String cpf = "";
+            String telefone = "";
+            
+           
             
             if (this.inputNome.getText().length() <= 0) {
                 throw new Mensagens("Deve inserir o seu nome");
@@ -156,11 +142,7 @@ try{
                 nome = this.inputNome.getText();
             }
             
-            if (this.inputUsuario.getText().length() <= 0) {
-                throw new Mensagens("Deve inserir o seu usuário");
-            }else {
-                usuario = this.inputUsuario.getText();
-            }
+           
             
             if (this.inputSenha.getText().length() <= 5) {
                 throw new Mensagens("A senha deve ter 5 ou mais caractéres");
@@ -174,43 +156,42 @@ try{
                 email = this.inputEmail.getText();
             }
             
-            if (this.inputCpf.getText().length() == 11) {
+            if (this.inputCpf.getText().length() <= 0) {
                 throw new Mensagens("Insira um CPF válido");
             }else {
-                cpf = Integer.parseInt(this.inputCpf.getText());
+                cpf = this.inputCpf.getText();
             }
             
-            if (this.inputNumCartao.getText().length() == 16) {
-                throw new Mensagens("Insira um número de cartão de crédito válido válido");
+            if (this.inputTelefone.getText().length() <= 0) {
+                throw new Mensagens("Insira um telefone válido válido");
             }else {
-                numCartao = Integer.parseInt(this.inputNumCartao.getText());
+                telefone = this.inputTelefone.getText();
             }
             
-            if (this.inputValCartao.getText().length() <= 0) {
-                throw new Mensagens("Deve inserir a validade do seu cartão de crédito");
-            }else {
-                valCartao = this.inputValCartao.getText();
-            }
             
-            if (this.controlador.Registrar(nome, usuario, senha, email, cpf, numCartao, valCartao)) {
+            if (this.controlador.Cadastrar(nome, senha, email, cpf, telefone)) {
                 JOptionPane.showMessageDialog(rootPane, "Cadastro foi realizado com sucesso");
                 
                 this.inputNome.setText("");
-                this.inputUsuario.setText("");
                 this.inputSenha.setText("");
                 this.inputEmail.setText("");
                 this.inputCpf.setText("");
-                this.inputNumCartao.setText("");
-                this.inputValCartao.setText("");
+                this.inputTelefone.setText("");
             }
             
-            System.out.println(this.controlador.getMinhaLista().toString);
+            System.out.println(this.controlador.getListaCliente().toString());
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
            JOptionPane.showMessageDialog(null, "Informar um número"); 
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaRegistroComprador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botaoCriarContaActionPerformed
+
+    private void inputTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,20 +210,21 @@ try{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroComprador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroComprador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroComprador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroComprador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaRegistro().setVisible(true);
+                new TelaRegistroComprador().setVisible(true);
             }
         });
     }
@@ -252,17 +234,13 @@ try{
     private javax.swing.JTextField inputCpf;
     private javax.swing.JTextField inputEmail;
     private javax.swing.JTextField inputNome;
-    private javax.swing.JTextField inputNumCartao;
     private javax.swing.JPasswordField inputSenha;
-    private javax.swing.JTextField inputUsuario;
-    private javax.swing.JTextField inputValCartao;
+    private javax.swing.JTextField inputTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
